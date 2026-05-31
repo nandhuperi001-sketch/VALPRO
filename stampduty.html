@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stamp Duty Valuation - Mithra ValPro</title>
+    <link rel="icon" type="image/png" href="MBC - IMAGE.jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #fff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo img {
+            height: 55px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0a2540;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav > a, .dropbtn {
+            color: #333;
+            text-decoration: none;
+            margin-left: 22px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        nav a:hover, .dropbtn:hover {
+            color: #1565c0;
+        }
+
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 250px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            z-index: 1000;
+            top: 30px;
+            left: 0;
+            border: 1px solid #e5e5e5;
+        }
+
+        .dropdown-content a {
+            color: #333 !important;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            margin: 0 !important;
+            font-size: 13px;
+            border-bottom: 1px solid #f5f5f5;
+            transition: 0.2s;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f8f9fa;
+            color: #1565c0 !important;
+            padding-left: 25px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(rgba(10, 37, 64, 0.85), rgba(21, 101, 192, 0.85)), 
+                        url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600') center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .breadcrumb {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .breadcrumb a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+
+        /* Service Types Grid */
+        .service-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #0a2540;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 60px;
+            font-size: 16px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 35px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .service-content {
+            padding: 30px;
+        }
+
+        .service-content h3 {
+            color: #0a2540;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .service-content p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .service-btn {
+            display: inline-block;
+            color: #1565c0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .service-btn:hover {
+            color: #0a2540;
+            padding-left: 5px;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .process-box {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0.08);
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .process-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .process-number {
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: #1565c0;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .process-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .process-box h4 {
+            color: #0a2540;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .process-box p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* Why Us Section */
+        .why-us-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .why-box {
+            background: #f8f9fa;
+            padding: 35px 30px;
+            border-radius: 10px;
+            border-left: 4px solid #ffcc00;
+            transition: 0.3s;
+        }
+
+        .why-box:hover {
+            background: #fff;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+
+        .why-icon {
+            width: 50px;
+            height: 50px;
+            background: #1565c0;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .why-box h4 {
+            color: #0a2540;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .why-box p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: #0a2540;
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 17px;
+            margin-bottom: 35px;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: #ffcc00;
+            color: #0a2540;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a2540;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: #ffcc00;
+        }
+
+        .footer-box p, .footer-box a {
+            color: rgba(255,255,255,0.85);
+            font-size: 14px;
+            line-height: 1.9;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .footer-box a:hover {
+            color: #ffcc00;
+        }
+
+        .footer-brand {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-brand:hover {
+            color: #ffcc00;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            transition: 0.3s;
+            margin-bottom: 0 !important;
+        }
+
+        .social-icons a:hover {
+            background: #ffcc00;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 25px;
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1200px) {
+            nav > a, .dropbtn {
+                margin-left: 18px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero {
+                padding: 70px 0;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .service-grid, .process-grid, .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+            }
+
+            .logo img {
+                height: 45px;
+            }
+
+            .logo-text {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="MBC - IMAGE.jpeg" alt="Mithra ValPro Logo">
+                <span class="logo-text">MITHRA VALPRO</span>
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                
+                <div class="dropdown">
+                    <a href="immovable.html" class="dropbtn">Immovable ▼</a>
+                    <div class="dropdown-content">
+                        <a href="immovable.html#residential">Residential Property</a>
+                        <a href="immovable.html#commercial">Commercial Property</a>
+                        <a href="immovable.html#industrial">Industrial Property</a>
+                        <a href="immovable.html#agricultural">Agricultural Land</a>
+                        <a href="immovable.html#vacant">Vacant Land / Plot</a>
+                        <a href="immovable.html#institutional">Institutional Property</a>
+                    </div>
+                </div>
+
+               <div class="dropdown">
+                    <a href="capitagain.html" class="dropbtn">Capital Gain ▼</a>
+                    <div class="dropdown-content">
+                        <a href="capitagain.html#sale-date">Sale Date Fair Market Value</a>
+                        <a href="capitagain.html#purchase-date">Purchase Date Fair Market Value</a>
+                        <a href="capitagain.html#inherited">Inherited Property Valuation</a>
+                        <a href="capitagain.html#residential-cg">Residential Capital Gain</a>
+                        <a href="capitagain.html#commercial-cg">Commercial Capital Gain</a>
+                        <a href="capitagain.html#agricultural-cg">Agricultural Land Capital Gain</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <a href="costofconstruction.html" class="dropbtn">Cost of Construction ▼</a>
+                    <div class="dropdown-content">
+                        <a href="costofconstruction.html#residential">Residential Building Cost</a>
+                        <a href="costofconstruction.html#commercial">Commercial Building Cost</a>
+                        <a href="costofconstruction.html#industrial">Industrial Construction Cost</a>
+                        <a href="costofconstruction.html#renovation">Renovation & Addition Cost</a>
+                        <a href="costofconstruction.html#bank-loan">Bank Loan Construction Cost</a>
+                        <a href="costofconstruction.html#insurance">Insurance Valuation Cost</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <a href="stampduty.html" class="dropbtn">Stamp Duty ▼</a>
+                    <div class="dropdown-content">
+                        <a href="#registration">Property Registration Valuation</a>
+                        <a href="#residential-sd">Residential Stamp Duty Valuation</a>
+                        <a href="#commercial-sd">Commercial Stamp Duty Valuation</a>
+                        <a href="#land-sd">Land Stamp Duty Valuation</a>
+                        <a href="#gift-deed">Gift Deed Valuation</a>
+                        <a href="#lease-deed">Lease Deed Valuation</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <a href="estimation and costing.html" class="dropbtn">Estimation ▼</a>
+                    <div class="dropdown-content">
+                        <a href="estimation and costing.html#project">Project Estimation</a>
+                        <a href="estimation and costing.html#boq">Bill of Quantities</a>
+                        <a href="estimation and costing.html#costing">Cost Analysis</a>
+                        <a href="estimation and costing.html#detailed">Detailed Estimation</a>
+                    </div>
+                </div>
+
+                <a href="#process">Process</a>
+                <a href="index.html#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Stamp Duty Valuation</h1>
+            <p>Get fair market value reports for property registration & stamp duty calculation. Accurate reports as per government guidelines.</p>
+        </div>
+    </section>
+
+    <section class="service-section">
+        <div class="container">
+            <h2 class="section-title">Stamp Duty Valuation Services</h2>
+            <p class="section-subtitle">We provide fair market value reports for stamp duty and registration purposes</p>
+            
+            <div class="service-grid">
+                <div class="service-card" id="registration">
+                    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600" alt="Registration Valuation" class="service-image">
+                    <div class="service-content">
+                        <h3>Property Registration Valuation</h3>
+                        <p>Fair market value reports for property registration and stamp duty calculation as per government guidelines.</p>
+                        <a href="#contact" class="service-btn">Get Quote →</a>
+                    </div>
+                </div>
+
+                <div class="service-card" id="residential-sd">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600" alt="Residential Stamp Duty" class="service-image">
+                    <div class="service-content">
+                        <h3>Residential Stamp Duty Valuation</h3>
+                        <p>Stamp duty valuation for houses, apartments, villas and residential plots registration.</p>
+                        <a href="#contact" class="service-btn">Get Quote →</a>
+                    </div>
+                </div>
+
+                <div class="service-card" id="commercial-sd">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600" alt="Commercial Stamp Duty" class="service-image">
+                    <div class="service-content">
+                        <h3>Commercial Stamp Duty Valuation</h3>
+                        <p>Stamp duty valuation for commercial buildings, shops, offices and commercial complexes.</p>
+                        <a href="#contact" class="service-btn">Get Quote →</a>
+                    </div>
+                </div>
+
+                <div class="service-card" id="land-sd">
+                    <img src="https://images.unsplash.com/photo-1628624747186-a941c476b7ef?w=600" alt="Land Stamp Duty" class="service-image">
+                    <div class="service-content">
+                        <h3>Land Stamp Duty Valuation</h3>
+                        <p>Stamp duty valuation for vacant land, plots and agricultural land registration purposes.</p>
+                        <a href="#contact" class="service-btn">Get Quote →</a>
+                    </div>
+                </div>
+
+                <div class="service-card" id="gift-deed">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600" alt="Gift Deed Valuation" class="service-image">
+                    <div class="service-content">
+                        <h3>Gift Deed Valuation</h3>
+                        <p>Property valuation for gift deed registration and stamp duty calculation.</p>
+                        <a href="#contact" class="service-btn">Get Quote →</a>
+                    </div>
+                </div>
+
+                <div class="service-card" id="lease-deed">
+                    <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600" alt="Lease Deed Valuation" class="service-image">
+                    <div class="service-content">
+                        <h3>Lease Deed Valuation</h3>
+                        <p>Valuation for lease deed registration and stamp duty assessment for long-term leases.</p>
+                        <a href="#contact" class="service-btn">Get Quote →</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section" id="process">
+        <div class="container">
+            <h2 class="section-title">Our Stamp Duty Valuation Process</h2>
+            <p class="section-subtitle">Simple 4-step process to get your valuation report</p>
+            
+            <div class="process-grid">
+                <div class="process-box">
+                    <div class="process-number">1</div>
+                    <div class="process-icon">📞</div>
+                    <h4>Contact & Consultation</h4>
+                    <p>Share your property details and registration purpose. We guide you on required documents for valuation.</p>
+                </div>
+
+                <div class="process-box">
+                    <div class="process-number">2</div>
+                    <div class="process-icon">📋</div>
+                    <h4>Document Verification</h4>
+                    <p>We verify sale agreement, patta, guideline value and other documents for accurate market value assessment.</p>
+                </div>
+
+                <div class="process-box">
+                    <div class="process-number">3</div>
+                    <div class="process-icon">🏠</div>
+                    <h4>Site Inspection & Analysis</h4>
+                    <p>Physical inspection of property and market rate analysis as per government guidelines and local rates.</p>
+                </div>
+
+                <div class="process-box">
+                    <div class="process-number">4</div>
+                    <div class="process-icon">📄</div>
+                    <h4>Report Delivery</h4>
+                    <p>Detailed valuation report with fair market value for stamp duty calculation. Hard copy + PDF provided.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-us-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose Mithra ValPro?</h2>
+            <p class="section-subtitle">Professional stamp duty valuation services you can trust</p>
+            
+            <div class="why-grid">
+                <div class="why-box">
+                    <div class="why-icon">✓</div>
+                    <h4>Government Guidelines</h4>
+                    <p>Valuation reports prepared as per government guidelines for stamp duty and registration.</p>
+                </div>
+
+                <div class="why-box">
+                    <div class="why-icon">✓</div>
+                    <h4>Registrar Accepted</h4>
+                    <p>Our valuation reports accepted by Sub-Registrar offices for property registration.</p>
+                </div>
+
+                <div class="why-box">
+                    <div class="why-icon">✓</div>
+                    <h4>Accurate Market Value</h4>
+                    <p>Fair market value assessment based on current guideline value and market rates.</p>
+                </div>
+
+                <div class="why-box">
+                    <div class="why-icon">✓</div>
+                    <h4>Legal Compliance</h4>
+                    <p>All reports comply with Registration Act and Stamp Duty regulations.</p>
+                </div>
+
+                <div class="why-box">
+                    <div class="why-icon">✓</div>
+                    <h4>Penalty Prevention</h4>
+                    <p>Proper valuation helps avoid deficit stamp duty notices and penalties.</p>
+                </div>
+
+                <div class="why-box">
+                    <div class="why-icon">✓</div>
+                    <h4>Detailed Reports</h4>
+                    <p>Comprehensive reports with property details, measurements and supporting documents.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Need Stamp Duty Valuation?</h2>
+            <p>Contact us for accurate stamp duty valuation reports for property registration</p>
+            <a href="tel:+919629015603" class="cta-btn">Call Now: +91 96290 15603</a>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-box">
+                    <h3>Contact Us</h3>
+                    <p><strong>☎ PHONE:</strong></p>
+                    <a href="tel:+919629015603">+91 96290 15603</a>   
+                    <p><strong>✉ E-MAIL US</strong></p>
+                        <a href="mailto:mithrabuilders11@gmail.com">mithrabuilders11@gmail.com</a>
+                <a href="mailto:dlakshmi5891@gmail.com">dlakshmi5891@gmail.com</a>
+                </div>
+                <div class="footer-box">
+                    <h3>ADDRESS:</h3>
+                    <p>No.9, First Floor,<br>ECR road, Lawspet,<br>Puducherry-605008</p>
+                </div>
+                <div class="footer-box">
+                    <h3>Stamp Duty Services</h3>
+                    <a href="#registration">Property Registration</a>
+                    <a href="#residential-sd">Residential Stamp Duty</a>
+                    <a href="#commercial-sd">Commercial Stamp Duty</a>
+                    <a href="#land-sd">Land Stamp Duty</a>
+                    <a href="#gift-deed">Gift Deed Valuation</a>
+                    <a href="#lease-deed">Lease Deed Valuation</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.dropbtn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (window.innerWidth <= 768) {
+                    this.parentElement.classList.toggle('active');
+                }
+            });
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            }
+        });
+    </script>
+
+</body>
+</html>
